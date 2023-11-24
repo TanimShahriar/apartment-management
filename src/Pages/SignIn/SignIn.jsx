@@ -48,7 +48,14 @@ const SignIn = () => {
         navigate(from, { replace: true });
 
       })
-      .catch()
+      .catch(error => {
+        console.log(error)
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Sorry, you are not registered!",
+        });
+      })
 
   }
 
@@ -101,7 +108,7 @@ const SignIn = () => {
               </div>
 
               <div className="form-control mt-6">
-                <input disabled={disabled} className='btn btn-primary' type="submit" value="Sign In" />
+                <input disabled={disabled} className='bg-[#4287f5]  cursor-pointer px-1 text-sm lg:text-base lg:px-4 rounded-md py-1 lg:py-2 btn-outline duration-300 border-white text-white w-full ' type="submit" value="Sign In" />
 
               </div>
 
