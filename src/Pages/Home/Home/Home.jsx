@@ -4,6 +4,7 @@ import Banner from "../../Banner/Banner";
 
 import Testimonial from "../Testimonial/Testimonial";
 import About from "../About/About";
+import Featured from "../Featured/Featured";
 
 
 const Home = () => {
@@ -14,7 +15,7 @@ const Home = () => {
       </Helmet>
       <Banner></Banner>
       <About></About>
-
+      <Featured></Featured>
     </div>
   );
 };
