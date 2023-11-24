@@ -3,6 +3,7 @@ import Banner from "../../Banner/Banner";
 
 
 import Testimonial from "../Testimonial/Testimonial";
+import About from "../About/About";
 
 
 const Home = () => {
@@ -12,10 +13,7 @@ const Home = () => {
         <title>The Hill | Home</title>
       </Helmet>
       <Banner></Banner>
-
-
-
-
+      <About></About>
 
     </div>
   );
