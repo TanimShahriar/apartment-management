@@ -65,8 +65,8 @@ const SignUp = () => {
       <Helmet>
         <title>Bistro Boss | Sign Up</title>
       </Helmet>
-      <div className=" rounded-lg py-20">
-        <div className="flex">
+      <div className=" rounded-lg py-24">
+        <div className="flex items-center">
           <div className="text-center lg:w-1/2">
             <img className="h-[400px] mt-10" src="https://i.ibb.co/YXCtnwk/Signin-Banner.jpg" alt="" />
           </div>
@@ -115,7 +115,7 @@ const SignUp = () => {
 
 
               <div className="form-control mt-6">
-                <input className='btn btn-secondary' type="submit" value="Sign Up" />
+                <input className='bg-[#4287f5]  cursor-pointer px-1 text-sm lg:text-base lg:px-4 rounded-md py-1 lg:py-2 btn-outline duration-300 border-white text-white w-full ' type="submit" value="Sign Up" />
 
               </div>
 
@@ -129,7 +129,7 @@ const SignUp = () => {
 
 
             <Link to="/signIn"> <p className="text-center mt-2">Already have an account? <span className="font-semibold text-[#4287f5]">Sign In</span></p></Link>
-            <Link to="/" className="ml-8 px-2 py-1 bg-slate-600 text-white">Home</Link>
+
           </div>
         </div>
 

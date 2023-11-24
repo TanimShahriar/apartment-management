@@ -1,15 +1,16 @@
-import { useContext } from "react";
+
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../../providers/AuthProvider";
-import { MdOutlineLogout, MdShoppingCart } from "react-icons/md";
-import useCart from "../../../Hooks/useCart";
+
+import { MdOutlineLogout } from "react-icons/md";
+import useAuth from "../../../Hooks/useAuth";
+
 
 
 
 const Navbar = () => {
 
-  const { user, setUser, signOutt } = useContext(AuthContext);
-  const [cart] = useCart()
+  const { user, setUser, signOutt } = useAuth();
+
 
 
   const handleSignOut = () => {

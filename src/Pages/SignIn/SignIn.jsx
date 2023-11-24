@@ -67,10 +67,10 @@ const SignIn = () => {
 
     <>
       <Helmet>
-        <title>Bistro Boss | Sign In</title>
+        <title>The Hill | Sign In</title>
       </Helmet>
-      <div className=" rounded-lg py-20">
-        <div className="flex  ">
+      <div className=" rounded-lg py-24 ">
+        <div className="flex items-center ">
           <div className="text-center lg:w-1/2">
             <img className="h-[400px] mt-10" src="https://i.ibb.co/YXCtnwk/Signin-Banner.jpg" alt="" />
           </div>
