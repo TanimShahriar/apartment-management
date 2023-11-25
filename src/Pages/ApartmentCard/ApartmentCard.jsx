@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAgreement from "../../Hooks/useAgreement";
 
 
 
@@ -13,7 +14,7 @@ const ApartmentCard = ({ card }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
+  const [, refetch] = useAgreement();
 
   const { user } = useAuth();
   console.log(user)
@@ -24,11 +25,11 @@ const ApartmentCard = ({ card }) => {
     if (user && user.email) {
 
       const userName = user.displayName;
-      const userEmail = user.email;
+
 
 
       const status = "Pending";
-      const tanim = { userName, status, userEmail, apartmentNo, blockName, floorNo, rent, apartmentImage }
+      const tanim = { userName, status, email: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage }
       console.log(tanim)
 
 
@@ -43,7 +44,8 @@ const ApartmentCard = ({ card }) => {
               icon: 'success',
               confirmButtonText: 'Cool',
               timer: 1500
-            })
+            });
+            refetch();
           }
 
         })

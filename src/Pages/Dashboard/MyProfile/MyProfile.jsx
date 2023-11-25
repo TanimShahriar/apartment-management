@@ -7,7 +7,8 @@ import useAgreement from "../../../Hooks/useAgreement";
 
 const MyProfile = () => {
   const [cart, refetch] = useAgreement();
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  console.log(cart);
+  const totalPrice = cart.reduce((total, item) => total + item.rent, 0);
   const axiosSecure = useAxiosSecure();
 
 
