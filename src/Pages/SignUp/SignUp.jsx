@@ -15,6 +15,7 @@ const SignUp = () => {
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
@@ -29,6 +30,7 @@ const SignUp = () => {
               name: data.name,
               email: data.email
             }
+
             axiosPublic.post("/users", userInfo)
               .then(res => {
                 if (res.data.insertedId) {
@@ -63,7 +65,7 @@ const SignUp = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Sign Up</title>
+        <title>The Hill | Sign Up</title>
       </Helmet>
       <div className=" rounded-lg py-24">
         <div className="flex items-center">

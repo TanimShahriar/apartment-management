@@ -1,12 +1,12 @@
 import Swal from "sweetalert2";
-import useCart from "../../../Hooks/useCart";
 import { MdOutlineDelete } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAgreement from "../../../Hooks/useAgreement";
 
 
 
-const Cart = () => {
-  const [cart, refetch] = useCart();
+const MyProfile = () => {
+  const [cart, refetch] = useAgreement();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   const axiosSecure = useAxiosSecure();
 
@@ -65,8 +65,8 @@ const Cart = () => {
                 <th>
 
                 </th>
-                <th>Item image</th>
-                <th>Item name</th>
+                <th>Apartment image</th>
+                <th>User name</th>
                 <th>Price</th>
                 <th>Action</th>
 
@@ -82,17 +82,17 @@ const Cart = () => {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className=" w-12 h-12">
-                          <img src={data.image} alt="Avatar Tailwind CSS Component" />
+                          <img src={data.apartmentImage} alt="Apartment" />
                         </div>
                       </div>
 
                     </div>
                   </td>
                   <td className="font-semibold">
-                    {data.name}
+                    {data.userName}
 
                   </td>
-                  <td className="font-semibold">{data.price}</td>
+                  <td className="font-semibold">{data.rent}$</td>
                   <td>
                     <button onClick={() => handleDelete(data._id)} className="btn btn-md bg-red-600"><MdOutlineDelete className="text-2xl text-white"></MdOutlineDelete></button>
                   </td>
@@ -114,4 +114,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default MyProfile;

@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { MdCalendarMonth, MdEmail, MdHome, MdList, MdMenu, MdPeople, MdPlusOne, MdReviews, MdShoppingCart } from "react-icons/md";
+import { MdAnnouncement, MdCalendarMonth, MdEmail, MdHome, MdList, MdMenu, MdPeople, MdPeopleOutline, MdPlusOne, MdReviews, MdShoppingCart } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 import useAdmin from "../Hooks/useAdmin";
 
@@ -14,12 +14,11 @@ const Dashboard = () => {
 
     <div className="flex">
       {/* dashboard sidebar */}
-      <div className="w-64 min-h-screen bg-[#eba946]">
+      <div className="w-64 min-h-screen bg-blue-400">
 
-        <div className="px-6 py-3">
+        <div className="p-3">
           <NavLink to="/">
-            <h2 className="font-bold text-lg ">BISTRO BOSS</h2>
-            <p className="tracking-widest uppercase font-medium">Restaurant</p>
+            <img src="https://i.ibb.co/XbCZ2G9/thehill-logo-teal.webp" alt="" />
           </NavLink>
         </div>
 
@@ -56,16 +55,17 @@ const Dashboard = () => {
             </> :
               <>
                 <li className="">
-                  <NavLink to="/dashboard/userHome">
-                    <MdHome className="text-xl"></MdHome>
-                    User Home</NavLink>
+                  <NavLink to="/dashboard/myProfile">
+                    <MdPeopleOutline className="text-xl"></MdPeopleOutline>
+                    My Profile</NavLink>
                 </li>
                 <li className="">
-                  <NavLink to="/dashboard/reservation">
-                    <MdCalendarMonth></MdCalendarMonth>
-                    Reservation</NavLink>
+                  <NavLink to="/dashboard/announcement">
+
+                    <MdAnnouncement></MdAnnouncement>
+                    Announcement</NavLink>
                 </li>
-                <li className="">
+                {/* <li className="">
                   <NavLink to="/dashboard/cart">
                     <MdShoppingCart></MdShoppingCart>
                     My Cart ({cart.length})</NavLink>
@@ -79,7 +79,7 @@ const Dashboard = () => {
                   <NavLink to="/dashboard/bookings">
                     <MdList></MdList>
                     My Bookings</NavLink>
-                </li>
+                </li> */}
 
 
               </>

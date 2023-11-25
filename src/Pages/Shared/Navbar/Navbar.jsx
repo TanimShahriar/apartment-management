@@ -66,7 +66,8 @@ const Navbar = () => {
             <button className="" tabIndex={0}><img className="h-11 w-11 rounded-full  " src={user.photoURL} alt="" /></button>
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-blue-100 rounded-box w-52 ">
               <p className="text-center">{user.displayName}</p>
-              <button className=" border-t border-white">Dashboard</button>
+
+              <Link className="flex justify-center" to="dashboard/myProfile"><button className=" border-t border-white">Dashboard</button></Link>
 
               <div className="mt-1 flex items-center justify-center gap-1 border-t border-white">
                 <button onClick={handleSignOut} > Sign out</button>

@@ -8,10 +8,11 @@ import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
-import Cart from "../Pages/Dashboard/Cart/Cart";
+
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Apartment from "../Pages/Apartment/Apartment";
 import Agree from "../Pages/Agree/Agree";
+import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 
 
 
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/apartment",
-        element: <PrivateRoute><Apartment></Apartment></PrivateRoute>
+        element: <Apartment></Apartment>
       },
       {
         path: "/agree",
@@ -53,8 +54,8 @@ export const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
-        path: "cart",
-        element: <Cart></Cart>
+        path: "myProfile",
+        element: <MyProfile></MyProfile>
       },
 
       //admin panel

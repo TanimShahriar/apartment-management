@@ -28,11 +28,11 @@ const ApartmentCard = ({ card }) => {
 
 
       const status = "Pending";
-      const tanim = { userName, status, userEmail, apartmentNo, blockName, floorNo, rent }
+      const tanim = { userName, status, userEmail, apartmentNo, blockName, floorNo, rent, apartmentImage }
       console.log(tanim)
 
 
-      axiosSecure.post("/agree", tanim)
+      axiosSecure.post("/agreement", tanim)
 
         .then(res => {
           console.log(res.data)
