@@ -1,13 +1,14 @@
 import { AiFillGoogleCircle } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SocialSignIn = () => {
   const { googleSignIn } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
   const handleGoogleSignIn = () => {

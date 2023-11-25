@@ -1,10 +1,11 @@
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from 'react';
-import { AuthContext } from '../../providers/AuthProvider';
+import { useEffect, useRef, useState } from 'react';
+
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import SocialSignIn from '../../Components/SocialSignIn/SocialSignIn';
+import useAuth from '../../Hooks/useAuth';
 
 
 
@@ -14,7 +15,7 @@ const SignIn = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
 
 
   const location = useLocation();
@@ -103,12 +104,12 @@ const SignIn = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input onClick={handleValidateCaptcha} type="text" placeholder="Type the captcha" ref={captchaRef} name="captcha" className="input input-bordered" required />
-                {/* <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-1">Validate</button> */}
+                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-1">Validate</button>
 
               </div>
 
               <div className="form-control mt-6">
-                <input disabled={disabled} className='bg-[#4287f5]  cursor-pointer px-1 text-sm lg:text-base lg:px-4 rounded-md py-1 lg:py-2 btn-outline duration-300 border-white text-white w-full ' type="submit" value="Sign In" />
+                <input disabled={disabled} className='btn btn-secondary w-full' type="submit" value="Sign In" />
 
               </div>
 

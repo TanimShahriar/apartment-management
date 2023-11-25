@@ -11,6 +11,7 @@ import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Apartment from "../Pages/Apartment/Apartment";
+import Agree from "../Pages/Agree/Agree";
 
 
 
@@ -37,7 +38,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/apartment",
-        element: <Apartment></Apartment>
+        element: <PrivateRoute><Apartment></Apartment></PrivateRoute>
+      },
+      {
+        path: "/agree",
+        element: <Agree></Agree>,
+        loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params._id}`)
       },
 
     ]
