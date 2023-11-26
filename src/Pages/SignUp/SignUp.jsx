@@ -6,12 +6,13 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
+import useAuth from "../../Hooks/useAuth";
 
 
 const SignUp = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const axiosPublic = useAxiosPublic();
-
+  const { user } = useAuth();
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -22,13 +23,13 @@ const SignUp = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser)
-        updateUserProfile(data.name, data.photoURL)
+        updateUserProfile(data.displayName, data.photoURL)
           .then(() => {
             console.log('user profile info updated')
             //create user entry in the database
             const userInfo = {
-              name: data.name,
-              email: data.email
+              name: user.displayName,
+              email: user.email
             }
 
             axiosPublic.post("/users", userInfo)

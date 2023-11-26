@@ -1,13 +1,17 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { MdAnnouncement, MdCalendarMonth, MdEmail, MdHome, MdList, MdMenu, MdPeople, MdPeopleOutline, MdPlusOne, MdReviews, MdShoppingCart } from "react-icons/md";
-import useCart from "../Hooks/useCart";
+import { MdAnnouncement, MdCalendarMonth, MdEmail, MdHome, MdList, MdMenu, MdPeople, MdPeopleOutline, MdPerson, MdPlusOne } from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin";
 
+
+
 const Dashboard = () => {
-  const [cart] = useCart();
+
   // TODO: get is Admin value from database
 
   const [isAdmin] = useAdmin();
+  const isMember = true;
+
+
 
   return (
 
@@ -24,35 +28,42 @@ const Dashboard = () => {
 
         <ul className="menu p-2 font-semibold space-y-1">
           {
-            isAdmin ? <>
+            isAdmin && <>
               <li className="">
-                <NavLink to="/dashboard/adminHome">
-                  <MdHome className="text-xl"></MdHome>
-                  Admin Home</NavLink>
-              </li>
-              <li className="">
-                <NavLink to="/dashboard/addItems">
-                  <MdPlusOne></MdPlusOne>
-                  Add Items</NavLink>
-              </li>
-              <li className="">
-                <NavLink to="/dashboard/manageItems">
-                  <MdList></MdList>
-                  Manage Items</NavLink>
-              </li>
-              <li className="">
-                <NavLink to="/dashboard/manageBookings">
-                  <MdCalendarMonth></MdCalendarMonth>
-                  Manage Bookings</NavLink>
+                <NavLink to="/dashboard/adminProfile">
+                  <MdPerson></MdPerson>
+                  Admin Profile</NavLink>
               </li>
               <li className="">
                 <NavLink to="/dashboard/allUsers">
+                  <MdPlusOne></MdPlusOne>
+                  Manage Members</NavLink>
+              </li>
+              <li className="">
+                <NavLink to="/dashboard/adminAnnouncement">
+                  <MdList></MdList>
+                  Make Announcement</NavLink>
+              </li>
+              <li className="">
+                <NavLink to="/dashboard/agreementRequest">
+                  <MdCalendarMonth></MdCalendarMonth>
+                  Agreement Requests</NavLink>
+              </li>
+              <li className="">
+                <NavLink to="/dashboard/manageCoupons">
                   <MdPeople></MdPeople>
-                  All Users</NavLink>
+                  Manage Coupons</NavLink>
               </li>
 
 
-            </> :
+            </>
+
+          }
+
+          {
+            isMember ?
+
+              //if member
               <>
                 <li className="">
                   <NavLink to="/dashboard/myProfile">
@@ -60,29 +71,44 @@ const Dashboard = () => {
                     My Profile</NavLink>
                 </li>
                 <li className="">
+                  <NavLink to="/dashboard/makePayment">
+                    <MdAnnouncement></MdAnnouncement>
+                    Make Payment</NavLink>
+                </li>
+                <li className="">
+                  <NavLink to="/dashboard/paymentHistory">
+                    <MdPeopleOutline className="text-xl"></MdPeopleOutline>
+                    Payment History</NavLink>
+                </li>
+                <li className="">
                   <NavLink to="/dashboard/announcement">
-
                     <MdAnnouncement></MdAnnouncement>
                     Announcement</NavLink>
                 </li>
-                {/* <li className="">
-                  <NavLink to="/dashboard/cart">
-                    <MdShoppingCart></MdShoppingCart>
-                    My Cart ({cart.length})</NavLink>
+
+
+
+              </> :
+
+
+              <>
+
+                <li className="">
+                  <NavLink to="/dashboard/myProfile">
+                    <MdPeopleOutline className="text-xl"></MdPeopleOutline>
+                    My Profile</NavLink>
                 </li>
                 <li className="">
-                  <NavLink to="/dashboard/review">
-                    <MdReviews></MdReviews>
-                    Add Review</NavLink>
+                  <NavLink to="/dashboard/announcement">
+                    <MdAnnouncement></MdAnnouncement>
+                    Announcement</NavLink>
                 </li>
-                <li className="">
-                  <NavLink to="/dashboard/bookings">
-                    <MdList></MdList>
-                    My Bookings</NavLink>
-                </li> */}
+
 
 
               </>
+
+
           }
           {/* shared content */}
           <div className="divider"></div>

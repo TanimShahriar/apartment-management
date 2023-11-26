@@ -33,7 +33,8 @@ const AllUsers = () => {
   }
 
 
-  const handleDelete = id => {
+  const handleDeleteUser = user => {
+    console.log(user);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -45,7 +46,7 @@ const AllUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        axiosSecure.delete(`/users/${id}`)
+        axiosSecure.delete(`/users/${user._id}`)
           .then(res => {
             if (res.data.deletedCount > 0) {
               refetch();
@@ -61,18 +62,12 @@ const AllUsers = () => {
       }
     });
   }
+
   return (
     <div className="">
-      <div className='my-5'>
-        <h4 className='text-center text-[#D99904] italic mb-5'>---------How Many?---------</h4>
-        <div className="flex flex-col justify-center items-center ">
 
-          <div className="w-[35%] text-center  border-y-2 py-4 border-slate-300 mb-4 text-4xl"><h2>Manage All Users</h2></div>
 
-        </div>
-      </div>
-
-      <div className=" bg-slate-300 mx-20 p-10">
+      <div className=" bg-slate-300 min-h-screen p-10">
         <div className="flex justify-between items-center  bg-slate-300  mx-auto mb-5">
           <h2 className="text-xl font-semibold">Total users: {users.length} </h2>
 
@@ -110,7 +105,7 @@ const AllUsers = () => {
                     {user.role === "admin" ? "Admin" : <button onClick={() => handleMakeAdmin(user)} className="btn btn-md bg-orange-500"><MdPeople className="text-xl text-white"></MdPeople></button>}
                   </td>
                   <td>
-                    <button onClick={() => handleDelete(user._id)} className="btn btn-md bg-red-600"><MdOutlineDelete className="text-xl text-white"></MdOutlineDelete></button>
+                    <button onClick={() => handleDeleteUser(user._id)} className="btn btn-md bg-red-600"><MdOutlineDelete className="text-xl text-white"></MdOutlineDelete></button>
                   </td>
                 </tr>)
               }

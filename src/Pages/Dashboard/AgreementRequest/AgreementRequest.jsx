@@ -6,7 +6,7 @@ import useAuth from "../../../Hooks/useAuth";
 
 
 
-const MyProfile = () => {
+const AgreementRequest = () => {
   const [cart, refetch] = useAgreement();
   console.log(cart);
   const totalPrice = cart.reduce((total, item) => total + item.rent, 0);
@@ -67,14 +67,18 @@ const MyProfile = () => {
             {/* head */}
             <thead className="bg-blue-400">
               <tr className="text-base font-bold">
+
                 <th>
                   S/N
                 </th>
-                <th>Apartment image</th>
-                <th>Apartment no.</th>
-                <th>Price</th>
-                <th>Agreement date</th>
-                <th>Action</th>
+                <th>User Name</th>
+                <th>User email</th>
+                <th>Block</th>
+
+                <th>Rent</th>
+                <th>Request date</th>
+                <th>Accept</th>
+                <th>Reject</th>
 
               </tr>
             </thead>
@@ -85,21 +89,17 @@ const MyProfile = () => {
                     {i + 1}
                   </th>
                   <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className=" w-16 h-16">
-                          <img src={data.apartmentImage} alt="Apartment" />
-                        </div>
-                      </div>
-
-                    </div>
+                    {data.userName}
                   </td>
                   <td className="font-semibold">
-                    {data.apartmentNo}
+                    {data.email}
 
                   </td>
+                  <td className="font-semibold">{data.blockName}</td>
                   <td className="font-semibold">{data.rent}$</td>
-                  <td className="font-semibold">{data.date}</td>
+                  <td className="font-semibold">{data.date}$</td>
+
+                  <td className="font-semibold"><button className="btn btn-primary">Accept</button></td>
                   <td>
                     <button onClick={() => handleDelete(data._id)} className="btn btn-md bg-red-600"><MdOutlineDelete className="text-2xl text-white"></MdOutlineDelete></button>
                   </td>
@@ -121,4 +121,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default AgreementRequest;

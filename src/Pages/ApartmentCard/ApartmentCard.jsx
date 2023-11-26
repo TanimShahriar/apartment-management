@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAgreement from "../../Hooks/useAgreement";
+import moment from "moment/moment";
 
 
 
@@ -29,7 +30,8 @@ const ApartmentCard = ({ card }) => {
 
 
       const status = "Pending";
-      const tanim = { userName, status, email: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage }
+      const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+      const tanim = { userName, status, email: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage, date }
       console.log(tanim)
 
 

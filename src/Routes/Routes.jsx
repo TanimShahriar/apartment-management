@@ -13,6 +13,12 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Apartment from "../Pages/Apartment/Apartment";
 import Agree from "../Pages/Agree/Agree";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
+import Announcement from "../Pages/Announcement/Announcement";
+import MakePayment from "../Pages/Dashboard/MakePayment/MakePayment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
+import AdminAnnouncement from "../Pages/Dashboard/AdminAnnouncement/AdminAnnouncement";
+import AgreementRequest from "../Pages/Dashboard/AgreementRequest/AgreementRequest";
 
 
 
@@ -57,11 +63,40 @@ export const router = createBrowserRouter([
         path: "myProfile",
         element: <MyProfile></MyProfile>
       },
+      {
+        path: "announcement",
+        element: <Announcement></Announcement>
+      },
+
+
+      //member panel
+      {
+        path: "makePayment",
+        element: <MakePayment></MakePayment>
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>
+      },
+
+
 
       //admin panel
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>
+      },
+      {
+        path: "adminProfile",
+        element: <AdminProfile></AdminProfile>
+      },
+      {
+        path: "adminAnnouncement",
+        element: <AdminAnnouncement></AdminAnnouncement>
+      },
+      {
+        path: "agreementRequest",
+        element: <AgreementRequest></AgreementRequest>
       },
     ]
   }
