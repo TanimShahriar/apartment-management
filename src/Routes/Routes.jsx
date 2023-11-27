@@ -19,6 +19,9 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 import AdminAnnouncement from "../Pages/Dashboard/AdminAnnouncement/AdminAnnouncement";
 import AgreementRequest from "../Pages/Dashboard/AgreementRequest/AgreementRequest";
+import UserAgreeReq from "../Pages/Dashboard/userAgreeReq/userAgreeReq";
+import AcceptedAgreement from "../Pages/Dashboard/AcceptedAgreement/AcceptedAgreement";
+import RejectedAgreement from "../Pages/Dashboard/RejectedAgreement/RejectedAgreement";
 
 
 
@@ -97,6 +100,18 @@ export const router = createBrowserRouter([
       {
         path: "agreementRequest",
         element: <AgreementRequest></AgreementRequest>
+      },
+      {
+        path: "userAgreeReq",
+        element: <UserAgreeReq></UserAgreeReq>
+      },
+      {
+        path: "acceptedAgreement",
+        element: <AcceptedAgreement></AcceptedAgreement>
+      },
+      {
+        path: "rejectedAgreement",
+        element: <RejectedAgreement></RejectedAgreement>
       },
     ]
   }

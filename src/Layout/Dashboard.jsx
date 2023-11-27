@@ -45,9 +45,9 @@ const Dashboard = () => {
                   Make Announcement</NavLink>
               </li>
               <li className="">
-                <NavLink to="/dashboard/agreementRequest">
+                <NavLink to="/dashboard/userAgreeReq">
                   <MdCalendarMonth></MdCalendarMonth>
-                  Agreement Requests</NavLink>
+                  Agreement </NavLink>
               </li>
               <li className="">
                 <NavLink to="/dashboard/manageCoupons">

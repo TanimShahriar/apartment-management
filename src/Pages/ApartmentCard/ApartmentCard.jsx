@@ -25,13 +25,13 @@ const ApartmentCard = ({ card }) => {
 
     if (user && user.email) {
 
-      const userName = user.displayName;
+      const reqName = user.displayName;
 
 
-
+      const apartmentId = _id;
       const status = "Pending";
       const date = moment().format('MMMM Do YYYY, h:mm:ss a');
-      const tanim = { userName, status, email: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage, date }
+      const tanim = { reqName, status, reqEmail: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage, date, apartmentId }
       console.log(tanim)
 
 
@@ -83,7 +83,7 @@ const ApartmentCard = ({ card }) => {
         <p className=" mx-4  font-medium text-xl">Floor: {floorNo}</p>
       </div>
       <p className=" mx-4  font-semibold text-lg">Rent: {rent}$</p>
-      <button onClick={handleAgree} className="px-3 py-1 bg-slate-300  font-semibold rounded-sm ml-4 ">{agreementButton}</button>
+      <button onClick={handleAgree} className="px-3 py-1 bg-slate-300  font-semibold rounded-sm ml-4 ">Agree</button>
     </div>
   );
 };
