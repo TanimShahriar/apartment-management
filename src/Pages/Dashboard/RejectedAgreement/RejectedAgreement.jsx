@@ -18,9 +18,9 @@ const RejectedAgreement = () => {
   return (
     <div className="p-7 bg-red-300 min-h-screen">
       <div className="flex justify-between">
-        <Link to="/dashboard/userAgreeReq"><button className="btn btn-primary"><h2>Agreement request</h2></button></Link>
-        <Link to="/dashboard/acceptedAgreement"><button className="btn btn-success"><h2>accepted</h2></button></Link>
-        <Link to="/dashboard/rejectedAgreement"><button className="btn btn-warning"><h2>rejected</h2></button></Link>
+        <Link to="/dashboard/userAgreeReq"><button className="font-medium px-3 py-2 bg-blue-500 rounded-md"><h2>Agreement request</h2></button></Link>
+        <Link to="/dashboard/acceptedAgreement"><button className="font-medium px-3 py-2 bg-green-500 rounded-md"><h2>accepted</h2></button></Link>
+        <Link to="/dashboard/rejectedAgreement"><button className="font-medium px-3 py-2 bg-red-400 rounded-md"><h2>rejected</h2></button></Link>
 
       </div>
 
@@ -52,15 +52,15 @@ const RejectedAgreement = () => {
                   {i + 1}
                 </th>
                 <td>
-                  {data.userName}
+                  {data.reqName}
                 </td>
                 <td className="font-semibold">
-                  {data.email}
+                  {data.reqEmail}
 
                 </td>
                 <td className="font-semibold">{data.blockName}</td>
                 <td className="font-semibold">{data.rent}$</td>
-                <td className="font-semibold">{data.date}</td>
+                <td className="font-semibold">{data.acceptDate}</td>
 
 
 

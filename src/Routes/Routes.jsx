@@ -22,6 +22,8 @@ import AgreementRequest from "../Pages/Dashboard/AgreementRequest/AgreementReque
 import UserAgreeReq from "../Pages/Dashboard/userAgreeReq/userAgreeReq";
 import AcceptedAgreement from "../Pages/Dashboard/AcceptedAgreement/AcceptedAgreement";
 import RejectedAgreement from "../Pages/Dashboard/RejectedAgreement/RejectedAgreement";
+import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
+import UserProfile from "../Pages/Dashboard/UserProfile/UserProfile";
 
 
 
@@ -70,6 +72,10 @@ export const router = createBrowserRouter([
         path: "announcement",
         element: <Announcement></Announcement>
       },
+      {
+        path: "userProfile",
+        element: <UserProfile></UserProfile>
+      },
 
 
       //member panel
@@ -112,6 +118,10 @@ export const router = createBrowserRouter([
       {
         path: "rejectedAgreement",
         element: <RejectedAgreement></RejectedAgreement>
+      },
+      {
+        path: "manageCoupons",
+        element: <ManageCoupons></ManageCoupons>
       },
     ]
   }

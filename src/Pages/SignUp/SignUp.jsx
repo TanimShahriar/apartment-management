@@ -1,8 +1,8 @@
-import { useContext } from "react";
+
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
+
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
@@ -14,7 +14,7 @@ const SignUp = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {

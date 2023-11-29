@@ -17,7 +17,7 @@ const Apartment = () => {
 
       <div className="grid lg:grid-cols-5 gap-4 pt-20 ">
         {
-          apartment.filter(card => card.availability == "available").map(items => <ApartmentCard key={items._id} card={items}></ApartmentCard>)
+          apartment.map(items => <ApartmentCard key={items._id} card={items}></ApartmentCard>)
         }
 
       </div>
@@ -27,3 +27,5 @@ const Apartment = () => {
 };
 
 export default Apartment;
+
+//.filter(card => card.availability == "available")

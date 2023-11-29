@@ -1,15 +1,24 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { MdAnnouncement, MdCalendarMonth, MdEmail, MdHome, MdList, MdMenu, MdPeople, MdPeopleOutline, MdPerson, MdPlusOne } from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin";
+import UseMember from "../Hooks/UseMember";
+import UseUser from "../Hooks/UseUser";
+
+// import UseMember from "../Hooks/UseMember";
+// import useUser from "../Hooks/UseUser";
 
 
 
 const Dashboard = () => {
 
-  // TODO: get is Admin value from database
+
 
   const [isAdmin] = useAdmin();
-  const isMember = true;
+
+  const [isMember] = UseMember();
+  const [isUser] = UseUser();
+  console.log(isAdmin, isMember, isUser)
+
 
 
 
@@ -61,52 +70,50 @@ const Dashboard = () => {
           }
 
           {
-            isMember ?
+            isMember &&
 
-              //if member
-              <>
-                <li className="">
-                  <NavLink to="/dashboard/myProfile">
-                    <MdPeopleOutline className="text-xl"></MdPeopleOutline>
-                    My Profile</NavLink>
-                </li>
-                <li className="">
-                  <NavLink to="/dashboard/makePayment">
-                    <MdAnnouncement></MdAnnouncement>
-                    Make Payment</NavLink>
-                </li>
-                <li className="">
-                  <NavLink to="/dashboard/paymentHistory">
-                    <MdPeopleOutline className="text-xl"></MdPeopleOutline>
-                    Payment History</NavLink>
-                </li>
-                <li className="">
-                  <NavLink to="/dashboard/announcement">
-                    <MdAnnouncement></MdAnnouncement>
-                    Announcement</NavLink>
-                </li>
-
-
-
-              </> :
-
-
-              <>
-
-                <li className="">
-                  <NavLink to="/dashboard/myProfile">
-                    <MdPeopleOutline className="text-xl"></MdPeopleOutline>
-                    My Profile</NavLink>
-                </li>
-                <li className="">
-                  <NavLink to="/dashboard/announcement">
-                    <MdAnnouncement></MdAnnouncement>
-                    Announcement</NavLink>
-                </li>
+            //if member
+            <>
+              <li className="">
+                <NavLink to="/dashboard/myProfile">
+                  <MdPeopleOutline className="text-xl"></MdPeopleOutline>
+                  My Profile</NavLink>
+              </li>
+              <li className="">
+                <NavLink to="/dashboard/makePayment">
+                  <MdAnnouncement></MdAnnouncement>
+                  Make Payment</NavLink>
+              </li>
+              <li className="">
+                <NavLink to="/dashboard/paymentHistory">
+                  <MdPeopleOutline className="text-xl"></MdPeopleOutline>
+                  Payment History</NavLink>
+              </li>
+              <li className="">
+                <NavLink to="/dashboard/announcement">
+                  <MdAnnouncement></MdAnnouncement>
+                  Announcement</NavLink>
+              </li>
 
 
 
-              </>
+            </>}
+
+
+          {isUser && <>
+
+            <li className="">
+              <NavLink to="/dashboard/userProfile">
+                <MdPeopleOutline className="text-xl"></MdPeopleOutline>
+                My Profile</NavLink>
+            </li>
+            <li className="">
+              <NavLink to="/dashboard/announcement">
+                <MdAnnouncement></MdAnnouncement>
+                Announcement</NavLink>
+            </li>
+
+          </>
 
 
           }
@@ -131,6 +138,7 @@ const Dashboard = () => {
 
         </ul>
       </div>
+
 
       {/* dashboard content */}
       <div className="flex-1">

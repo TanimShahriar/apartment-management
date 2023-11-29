@@ -3,6 +3,9 @@ import { MdOutlineDelete } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAgreement from "../../../Hooks/useAgreement";
 import useAuth from "../../../Hooks/useAuth";
+import { Link } from "react-router-dom";
+// import AgreementRequest from "../AgreementRequest/AgreementRequest";
+import { useQuery } from "@tanstack/react-query";
 
 
 
@@ -12,6 +15,23 @@ const MyProfile = () => {
   const totalPrice = cart.reduce((total, item) => total + item.rent, 0);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  console.log(user.email)
+
+
+
+  const { data: agreementProduct = [] } = useQuery({
+    queryKey: ["member"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/members")
+      return res.data;
+    }
+  })
+
+
+
+  const myProduct = agreementProduct.filter(item => item.reqEmail == user.email);
+  console.log(myProduct);
+
 
   const handleDelete = id => {
     Swal.fire({
@@ -41,6 +61,11 @@ const MyProfile = () => {
     });
   }
 
+
+
+
+
+
   return (
     <div className="bg-slate-300 p-7 min-h-screen">
       <div className="flex justify-end font-semibold">
@@ -56,66 +81,39 @@ const MyProfile = () => {
 
       </div>
       <div className="pt-10 ">
-        <div className="flex justify-between items-center  bg-slate-300  mx-auto mb-5">
-          <h2 className="text-xl font-semibold">Total items: {cart.length}</h2>
-          <h2 className="text-xl font-semibold">Total price: {totalPrice}$</h2>
-          <button className="btn btn-secondary">PAY</button>
+        <div className="flex justify-end  bg-slate-300  mx-auto mb-5">
+
+          {cart.length ? <Link to="/dashboard/makePayment"> <button className="btn btn-secondary">PAY</button></Link> : <button disabled className="btn btn-secondary">PAY</button>}
         </div>
 
-        <div className="overflow-x-auto mx-auto">
-          <table className="table">
-            {/* head */}
-            <thead className="bg-blue-400">
-              <tr className="text-base font-bold">
-                <th>
-                  S/N
-                </th>
-                <th>Apartment image</th>
-                <th>Apartment no.</th>
-                <th>Price</th>
-                <th>Agreement date</th>
-                <th>Action</th>
+        <div className="grid grid-cols-2 gap-3">
 
-              </tr>
-            </thead>
-            <tbody>
-              {
-                cart.map((data, i) => <tr key={data._id}>
-                  <th>
-                    {i + 1}
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className=" w-16 h-16">
-                          <img src={data.apartmentImage} alt="Apartment" />
-                        </div>
-                      </div>
+          {
+            myProduct.map(data =>
+              <div key={data._id} className="card  bg-base-100 shadow-xl">
 
-                    </div>
-                  </td>
-                  <td className="font-semibold">
-                    {data.apartmentNo}
+                <div className=" space-y-2 rounded-lg  p-2  shadow-lg drop-shadow-md shadow-current  h-auto  hover:shadow-lg hover:transform hover:scale-100 duration-500 ease-in-out">
+                  <img className="h-[220px] w-full" src={data.apartmentImage} alt="" />
+                  <p className=" mx-4 font-medium ">{data.acceptDate}</p>
+                  <div className="flex justify-between items-center">
 
-                  </td>
-                  <td className="font-semibold">{data.rent}$</td>
-                  <td className="font-semibold">{data.date}</td>
-                  <td>
-                    <button onClick={() => handleDelete(data._id)} className="btn btn-md bg-red-600"><MdOutlineDelete className="text-2xl text-white"></MdOutlineDelete></button>
-                  </td>
-                </tr>)
-              }
+                    <p className=" mx-4  font-medium ">Block: {data.blockName}</p>
+                    <p className=" mx-4  font-medium ">Floor: {data.floorNo}</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className=" mx-4  font-medium ">Apartment no : {data.apartmentNo}</p>
+                    <p className=" mx-4  font-medium ">Rent: {data.rent}$</p>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className=" mx-4  font-semibold ">Status: Checked</p>
+                    <button onClick={() => handleDelete(data._id)} className="btn btn-primary">remove</button>
+                  </div>
+                </div>
+              </div>
 
-
-
-
-            </tbody>
-
-
-
-          </table>
+            )
+          }
         </div>
-
       </div>
     </div>
   );

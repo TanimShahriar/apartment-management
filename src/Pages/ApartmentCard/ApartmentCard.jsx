@@ -30,8 +30,8 @@ const ApartmentCard = ({ card }) => {
 
       const apartmentId = _id;
       const status = "Pending";
-      const date = moment().format('MMMM Do YYYY, h:mm:ss a');
-      const tanim = { reqName, status, reqEmail: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage, date, apartmentId }
+      const agreementDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+      const tanim = { reqName, status, reqEmail: user.email, apartmentNo, blockName, floorNo, rent, apartmentImage, agreementDate, apartmentId }
       console.log(tanim)
 
 

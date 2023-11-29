@@ -43,24 +43,18 @@ const AllUsers = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
 
-        axiosSecure.delete(`/users/${user._id}`)
-          .then(res => {
-            if (res.data.deletedCount > 0) {
+          axiosSecure.delete(`/users/${user}`)
+            .then(res => {
+              console.log(res)
               refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+            })
 
-            }
-
-          })
-      }
-    });
+        }
+      });
   }
 
   return (
