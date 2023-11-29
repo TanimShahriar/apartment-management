@@ -24,6 +24,8 @@ import AcceptedAgreement from "../Pages/Dashboard/AcceptedAgreement/AcceptedAgre
 import RejectedAgreement from "../Pages/Dashboard/RejectedAgreement/RejectedAgreement";
 import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
 import UserProfile from "../Pages/Dashboard/UserProfile/UserProfile";
+import ConfirmPayment from "../Pages/Dashboard/MakePayment/confirmPayment";
+import CreateCoupons from "../Pages/Dashboard/Coupons/CreateCoupons";
 
 
 
@@ -87,6 +89,10 @@ export const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>
       },
+      {
+        path: "confirmPayment",
+        element: <ConfirmPayment></ConfirmPayment>
+      },
 
 
 
@@ -122,6 +128,10 @@ export const router = createBrowserRouter([
       {
         path: "manageCoupons",
         element: <ManageCoupons></ManageCoupons>
+      },
+      {
+        path: "createCoupons",
+        element: <CreateCoupons></CreateCoupons>
       },
     ]
   }

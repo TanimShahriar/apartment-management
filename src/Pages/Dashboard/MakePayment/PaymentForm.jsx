@@ -38,7 +38,7 @@ const PaymentForm = () => {
 
 
   const agreementData = member.find(item => item.reqEmail == user.email)
-  const { reqEmail, apartmentNo, blockName, floorNo, rent, acceptDate } = agreementData;
+  const { reqEmail, apartmentNo, blockName, floorNo, rent, acceptDate, _id } = agreementData;
   console.log(agreementData);
 
 
@@ -128,6 +128,13 @@ const PaymentForm = () => {
           });
         }
 
+
+        axiosSecure.delete(`/members/${_id}`)
+          .then(res => {
+            console.log(res);
+          })
+
+
         axiosSecure.delete(`/apartments/${apartmentNo}`)
           .then(res => {
             console.log(res);
@@ -204,14 +211,7 @@ const PaymentForm = () => {
         </div>
 
 
-        <input type="submit" value="pay" className="px-4 py-3 bg-[#4287f5] my-5 w-full rounded-md font-medium cursor-pointer" />
-
-
       </form>
-
-
-
-
 
 
 
@@ -219,7 +219,7 @@ const PaymentForm = () => {
         <CardElement
 
         />
-        <button className="mt-10 px-3 py-1 bg-green-600 rounded-md font-semibold " type="submit" disabled={!stripe}>
+        <button className=" w-full mt-10 px-3 py-1 bg-green-600 rounded-md font-semibold " type="submit" disabled={!stripe}>
           Pay
         </button>
         <p className="text-red-700 ml-8 mt-3 font-semibold">{error}</p>

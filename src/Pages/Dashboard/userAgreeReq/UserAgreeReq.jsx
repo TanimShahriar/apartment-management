@@ -41,13 +41,8 @@ const UserAgreeReq = () => {
       </div>
       <div className="flex justify-end font-semibold mt-10">
         <div className="flex justify-end gap-2 items-center">
-          <div className="">
-            <img className="h-11 w-11 rounded-full" src={user.photoURL} alt="" />
-          </div>
-          <div>
-            <h2 className="text-sm">{user.email}</h2>
-            <h2 className="text-sm">User: {user.displayName}</h2>
-          </div>
+
+
         </div>
 
       </div>

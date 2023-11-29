@@ -59,7 +59,7 @@ const Dashboard = () => {
                   Agreement </NavLink>
               </li>
               <li className="">
-                <NavLink to="/dashboard/manageCoupons">
+                <NavLink to="/dashboard/createCoupons">
                   <MdPeople></MdPeople>
                   Manage Coupons</NavLink>
               </li>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                   My Profile</NavLink>
               </li>
               <li className="">
-                <NavLink to="/dashboard/makePayment">
+                <NavLink to="/dashboard/confirmPayment">
                   <MdAnnouncement></MdAnnouncement>
                   Make Payment</NavLink>
               </li>

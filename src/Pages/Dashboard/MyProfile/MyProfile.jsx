@@ -81,12 +81,9 @@ const MyProfile = () => {
 
       </div>
       <div className="pt-10 ">
-        <div className="flex justify-end  bg-slate-300  mx-auto mb-5">
 
-          {cart.length ? <Link to="/dashboard/makePayment"> <button className="btn btn-secondary">PAY</button></Link> : <button disabled className="btn btn-secondary">PAY</button>}
-        </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
 
           {
             myProduct.map(data =>
