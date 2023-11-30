@@ -37,7 +37,7 @@ const Agree = () => {
 
 
 
-    fetch("http://localhost:5000/agree", {
+    fetch("https://the-hill-apartment-server.vercel.app/agree", {
       method: "POST",
       headers: {
         "content-type": "application/json"

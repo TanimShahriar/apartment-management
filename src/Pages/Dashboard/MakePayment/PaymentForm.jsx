@@ -61,6 +61,10 @@ const PaymentForm = () => {
     }
   })
 
+
+  const couponPercent = coupons.find(item => item.discountPercentage)
+  const { discountPercentage } = couponPercent;
+
   console.log(coupons);
 
   const finalAmount = rent - discoutAmount;
@@ -159,9 +163,10 @@ const PaymentForm = () => {
 
         //saving payment details in db
         const payment = {
-          reqEmail, apartmentNo, blockName, floorNo, rent, paymentMonth,
+          reqEmail, apartmentNo, blockName, floorNo, rent, paymentMonth, discountPercentage,
           email: user.email,
           price: finalAmount,
+
           transactionId: paymentIntent.id,
           date: new Date(),
           agreementIds: member.map(item => item._id),
@@ -200,132 +205,167 @@ const PaymentForm = () => {
   return (
     <div>
 
-      <form className="p-5">
+      <div>
 
-        <div className="md:flex gap-5 mb-5 ">
-          <div className="form-control w-1/2">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <label className="">
+        <form className="p-5">
 
-              <input type="text" readOnly placeholder="Email" name="name" defaultValue={reqEmail} className="input input-bordered w-72 lg:w-full" />
-            </label>
+          <div className="md:flex gap-5 mb-5 ">
+            <div className="form-control w-1/2">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <label className="">
+
+                <input type="text" readOnly placeholder="Email" name="name" defaultValue={reqEmail} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="label-text">Floor number</span>
+              </label>
+              <label className="">
+
+                <input type="text" readOnly placeholder="Assignment Description" name="description" defaultValue={floorNo} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
           </div>
-          <div className="form-control md:w-1/2">
-            <label className="label">
-              <span className="label-text">Floor number</span>
-            </label>
-            <label className="">
+          {/* supplier and taste row  */}
+          <div className="md:flex gap-5 mb-5">
+            <div className="form-control w-1/2">
+              <label className="label"><span className="label-text">Block name</span></label>
 
-              <input type="text" readOnly placeholder="Assignment Description" name="description" defaultValue={floorNo} className="input input-bordered w-72 lg:w-full" />
-            </label>
+              <label className=""><input type="text" readOnly placeholder="Marks" name="marks" defaultValue={blockName} className="input input-bordered w-72 lg:w-full" />
+
+              </label>
+
+            </div>
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="label-text">Apartment no</span>
+              </label>
+              <label className="">
+
+                <input type="text" readOnly placeholder="Thumbnail URL" name="url" defaultValue={apartmentNo} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
           </div>
-        </div>
-        {/* supplier and taste row  */}
-        <div className="md:flex gap-5 mb-5">
-          <div className="form-control w-1/2">
-            <label className="label"><span className="label-text">Block name</span></label>
+          {/* category and details row*/}
+          <div className="md:flex gap-5 mb-5">
+            <div className="form-control w-1/2">
+              <label className="label">
+                <span className="label-text">rent</span>
+              </label>
+              <label className="">
 
-            <label className=""><input type="text" readOnly placeholder="Marks" name="marks" defaultValue={blockName} className="input input-bordered w-72 lg:w-full" />
+                <input type="text" readOnly placeholder="Difficulty Level" name="level" defaultValue={rent} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="label-text">Date</span>
+              </label>
+              <label className="">
 
-            </label>
-
-          </div>
-          <div className="form-control md:w-1/2">
-            <label className="label">
-              <span className="label-text">Apartment no</span>
-            </label>
-            <label className="">
-
-              <input type="text" readOnly placeholder="Thumbnail URL" name="url" defaultValue={apartmentNo} className="input input-bordered w-72 lg:w-full" />
-            </label>
-          </div>
-        </div>
-        {/* category and details row*/}
-        <div className="md:flex gap-5 mb-5">
-          <div className="form-control w-1/2">
-            <label className="label">
-              <span className="label-text">rent</span>
-            </label>
-            <label className="">
-
-              <input type="text" readOnly placeholder="Difficulty Level" name="level" defaultValue={rent} className="input input-bordered w-72 lg:w-full" />
-            </label>
-          </div>
-          <div className="form-control md:w-1/2">
-            <label className="label">
-              <span className="label-text">Date</span>
-            </label>
-            <label className="">
-
-              <input name="date" readOnly defaultValue={acceptDate} className="input input-bordered w-72 lg:w-full" />
-            </label>
-          </div>
-        </div>
-
-
-      </form>
-
-
-
-      <div className=" gap-10 p-5 ">
-
-
-        <form className="form-controll" onSubmit={handleCoupon}>
-          <div className="w-[300px]">
-            <label className="label">
-              <span className="label-text text-lg font-semibold">rent month</span>
-            </label>
-
-            <select className="w-[450px] h-12 rounded-lg" type="text" required placeholder="Difficulty Level" name="month"  >
-              <option>january</option>
-              <option>february</option>
-              <option>march</option>
-              <option>april</option>
-              <option>may</option>
-              <option>june</option>
-              <option>july</option>
-              <option>august</option>
-              <option>september</option>
-              <option>october</option>
-              <option>november</option>
-              <option>december</option>
-            </select>
+                <input name="date" readOnly defaultValue={acceptDate} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
           </div>
 
-          <div className="form-control mt-2 w-[450px]">
-            <label className="label">
-              <span className="label-text">coupon</span>
-            </label>
-            <label className="">
 
-              <input name="coupon" placeholder="coupon" className="input input-bordered w-72 lg:w-full" />
-            </label>
-          </div>
-          <input className="btn btn-primary mt-8 w-[450px]" type="submit" value="Get discount" />
-
-
-
-
-          <p className="text-red-700 ml-2 mt-3 font-semibold">{couponError}</p>
-          <p className="text-green-700 ml-2 mt-3 font-semibold">{successCoupon}</p>
         </form>
 
 
 
+        <div className="flex justify-between items-center ">
 
-        <form onSubmit={handleSubmit} className=" w-[450px] border bg-blue-400 h-48 rounded-md mt-5  p-2  hover:shadow-lg hover:transform hover:scale-100 duration-500 ease-in-out ">
-          <CardElement
 
-          />
-          <button className=" w-full mt-10 px-3 py-1 bg-green-600 rounded-md font-semibold " type="submit" disabled={!stripe}>
-            Pay
-          </button>
-          <p className="text-red-700 ml-8 mt-3 font-semibold">{error}</p>
-          {transactionId && <p className="text-purple-700  font-semibold">your transaction id: {transactionId}</p>}
 
-        </form>
+          <div className=" gap-10 p-5 ">
+
+
+            <form className="form-controll" onSubmit={handleCoupon}>
+              <div className="w-[300px]">
+                <label className="label">
+                  <span className="label-text text-lg font-semibold">rent month</span>
+                </label>
+
+                <select className="w-[450px] h-12 rounded-lg" type="text" required placeholder="Difficulty Level" name="month"  >
+                  <option>january</option>
+                  <option>february</option>
+                  <option>march</option>
+                  <option>april</option>
+                  <option>may</option>
+                  <option>june</option>
+                  <option>july</option>
+                  <option>august</option>
+                  <option>september</option>
+                  <option>october</option>
+                  <option>november</option>
+                  <option>december</option>
+                </select>
+              </div>
+
+              <div className="form-control mt-2 w-[450px]">
+                <label className="label">
+                  <span className="label-text">coupon</span>
+                </label>
+                <label className="">
+
+                  <input name="coupon" placeholder="coupon" className="input input-bordered w-72 lg:w-full" />
+                </label>
+              </div>
+              <input className="btn btn-primary mt-8 w-[450px]" type="submit" value="Get discount" />
+
+
+
+
+              <p className="text-red-700 ml-2 mt-3 font-semibold">{couponError}</p>
+              <p className="text-green-700 ml-2 mt-3 font-semibold">{successCoupon}</p>
+            </form>
+
+
+
+
+            <form onSubmit={handleSubmit} className=" w-[450px] border bg-blue-400 h-48 rounded-md mt-5  p-2  hover:shadow-lg hover:transform hover:scale-100 duration-500 ease-in-out ">
+              <CardElement
+
+              />
+              <button className=" w-full mt-10 px-3 py-1 bg-green-600 rounded-md font-semibold " type="submit" disabled={!stripe}>
+                Pay
+              </button>
+              <p className="text-red-700 ml-8 mt-3 font-semibold">{error}</p>
+              {transactionId && <p className="text-purple-700  font-semibold">your transaction id: {transactionId}</p>}
+
+            </form>
+          </div>
+
+
+          <div className="border border-blue-500 p-4 mr-5 rounded-lg w-1/2">
+            <div className="form-control  ">
+              <label className="label">
+                <span className="label-text">price</span>
+              </label>
+              <label className="">
+
+                <input type="text" readOnly name="name" defaultValue={rent} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">discount percent</span>
+              </label>
+              <label className="">
+
+                <input type="text" readOnly placeholder="Assignment Description" name="description" defaultValue={14} className="input input-bordered w-72 lg:w-full" />
+              </label>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
       </div>
     </div>
 

@@ -30,7 +30,7 @@ import MoreAbout from "../Pages/Home/About/MoreAbout";
 import AllCoupons from "../Pages/Dashboard/Coupons/AllCoupons";
 import Gallery from "../Pages/Gallery/Gallery";
 import Location from "../Pages/Location/Location";
-import AdminRoute from "./AdminRoute";
+
 import Contact from "../Pages/Dashboard/Contact/Contact";
 
 
@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
       {
         path: "/agree",
         element: <Agree></Agree>,
-        loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params._id}`)
+        loader: ({ params }) => fetch(`https://the-hill-apartment-server.vercel.app/apartments/${params._id}`)
       },
 
     ]

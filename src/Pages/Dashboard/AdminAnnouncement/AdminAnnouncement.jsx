@@ -50,7 +50,7 @@ const AdminAnnouncement = () => {
 
 
 
-    fetch("http://localhost:5000/adminAnnouncement", {
+    fetch("https://the-hill-apartment-server.vercel.app/adminAnnouncement", {
       method: "POST",
       headers: {
         "content-type": "application/json"

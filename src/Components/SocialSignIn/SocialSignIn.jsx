@@ -18,10 +18,10 @@ const SocialSignIn = () => {
           name: result.user?.displayName,
           email: result.user?.email
         }
-        axiosPublic.post("/users", userInfo)
-          .then(res => {
-            console.log(res.data)
-          })
+        // axiosPublic.post("/users", userInfo)
+        //   .then(res => {
+        //     console.log(res.data)
+        //   })
         console.log(result.user);
         Swal.fire({
           title: "Cool!",

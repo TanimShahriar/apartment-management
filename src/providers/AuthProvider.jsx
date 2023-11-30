@@ -58,6 +58,18 @@ const AuthProvider = ({ children }) => {
         // remove token(if token stored in the client side)
         localStorage.removeItem("access-token");
       }
+      if (currentUser && currentUser.email && currentUser.displayName) {
+        const userInfo = {
+          email: currentUser.email,
+          name: currentUser.displayName,
+          role: 'user'
+        }
+        axiosPublic.post('/users', userInfo)
+          .then(res => {
+            console.log(res.data)
+          })
+      }
+
       setLoading(false);
     });
 

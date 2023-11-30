@@ -103,7 +103,7 @@ const MyProfile = () => {
                   </div>
                   <div className="flex justify-between">
                     <p className=" mx-4  font-semibold ">Status: Checked</p>
-                    <button onClick={() => handleDelete(data._id)} className="btn btn-primary">remove</button>
+
                   </div>
                 </div>
               </div>
