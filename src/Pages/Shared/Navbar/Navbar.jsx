@@ -26,7 +26,7 @@ const Navbar = () => {
 
     <NavLink className="focus:bg-[#4287f5] px-3 py-1 text-lg  rounded-md text-white  btn-outline mr-2 duration-300 " to='/'>Home</NavLink>
     <NavLink className="focus:bg-[#4287f5] px-3 py-1 text-lg  rounded-md text-white  btn-outline mr-2 duration-300 " to='/apartment'>Apartments</NavLink>
-    <NavLink className="focus:bg-[#4287f5] px-3 py-1 text-lg  rounded-md text-white  btn-outline mr-2 duration-300 " to='/ourMenu'>Gallery</NavLink>
+    <NavLink className="focus:bg-[#4287f5] px-3 py-1 text-lg  rounded-md text-white  btn-outline mr-2 duration-300 " to='/gallery'>Gallery</NavLink>
 
 
   </>

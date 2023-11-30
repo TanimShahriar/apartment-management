@@ -1,9 +1,26 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAuth from "../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { MdArrowRightAlt, MdDeleteForever } from "react-icons/md"
+import { useLocation } from "react-router-dom";
 
 const CreateCoupons = () => {
 
+  const { user } = useAuth();
+
+  const location = useLocation();
+
   const axiosSecure = useAxiosSecure();
+  const { data: coupons = [], refetch } = useQuery({
+    queryKey: ["coupons"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/coupons")
+      return res.data;
+    }
+  })
+
+  console.log(coupons);
 
   const handleCreateCoupons = e => {
 
@@ -22,27 +39,45 @@ const CreateCoupons = () => {
     axiosSecure.post("/coupons", tanim)
 
       .then(res => {
-        console.log(res.data)
+        console.log(res.data.insertedId)
         if (res.data.insertedId) {
-          Swal.fire({
-            title: 'Success!',
-            text: 'coupons created successfully',
-            icon: 'success',
-            confirmButtonText: 'Cool',
-            timer: 1500
-          });
-
+          refetch();
         }
 
       })
   }
 
+
+  const handleDeleteCoupon = (id) => {
+    console.log(user);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+
+          axiosSecure.delete(`/coupons/${id}`)
+            .then(res => {
+              console.log(res)
+              refetch();
+            })
+
+        }
+      });
+  }
+
   return (
-    <div>
+    <div className="bg-emerald-700 min-h-screen">
       {/* create coupons */}
-      <div>
+      <div className="">
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>Create coupon</button>
+        <button className=" px-4 py-2 bg-slate-400 font-semibold flex items-center  gap-1" onClick={() => document.getElementById('my_modal_1').showModal()}>Create coupon < MdArrowRightAlt className="text-lg font-bold"></ MdArrowRightAlt> </button>
         <dialog id="my_modal_1" className="modal">
           <div className="modal-box">
 
@@ -78,8 +113,11 @@ const CreateCoupons = () => {
                     <textarea required className="textarea textarea-bordered w-full h-64" name="description" placeholder="descripton "></textarea>
                   </label>
                 </div>
+
               </div>
-              <input type="submit" value="create coupon" className=" bg-white block m-auto w-full rounded-md cursor-pointer text-center border hover:bg-blue-500  py-1  text-lg font-bold " />
+              <div>
+
+                <input type="submit" value="create coupon" className=" bg-white block m-auto w-full rounded-md cursor-pointer text-center border hover:bg-blue-500  py-1  text-lg font-bold " /></div>
 
 
             </form>
@@ -92,11 +130,61 @@ const CreateCoupons = () => {
 
 
       {/* All coupons*/}
+      <h2 className="mt-10 ml-5 font-bold mb-2">coupon cards:</h2>
 
-      <div>
 
 
+      <div className="overflow-x-auto mx-auto">
+        <table className="table">
+          {/* head */}
+          <thead className="bg-orange-400">
+            <tr className="text-base font-bold">
+              <th>
+                s/n
+              </th>
+              <th>Coupon code</th>
+              <th>discount percentage</th>
+              <th>description</th>
+              <th>action</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            {
+              coupons.map((user, i) => <tr key={user._id}>
+                <th>
+                  {i + 1}
+                </th>
+                <td className="font-bold">
+                  {user.couponCode}
+                </td>
+                <td className="font-semibold">
+                  {user.discountPercentage}
+
+                </td>
+                <td className="font-semibold">
+                  {user.description}
+                </td>
+                <td>
+                  <button onClick={() => handleDeleteCoupon(user._id)} className="bg-slate-50 px-4 py-1 rounded-lg flex items-center text-red-600 gap-1"> <MdDeleteForever></MdDeleteForever>delete</button>
+                </td>
+              </tr>)
+            }
+
+
+
+
+          </tbody>
+
+
+
+        </table>
       </div>
+
+
+
+
 
 
 

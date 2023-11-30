@@ -29,7 +29,11 @@ const ConfirmPayment = () => {
 
       {confirmMail.length > 0 ? <Link to="/dashboard/makePayment" ><button className="btn btn-primary">Confirm payment</button></Link> :
 
-        <h2 className="text-center">You don't have any apartment to make payment</h2>
+        <>
+          <h2 className="text-center font-semibold">You don't have any apartment to make payment</h2>
+          <hr />
+          <img className="mx-auto" src="https://i.ibb.co/Y22Z4jP/dataNO.png" alt="" />
+        </>
 
       }
 

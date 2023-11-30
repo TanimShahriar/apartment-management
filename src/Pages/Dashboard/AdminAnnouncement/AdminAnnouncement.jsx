@@ -63,7 +63,7 @@ const AdminAnnouncement = () => {
         if (data.insertedId) {
           Swal.fire({
             title: 'Success!',
-            text: 'Assignment submitted complete',
+            text: 'announcement created for all users and members',
             icon: 'success',
             confirmButtonText: 'Cool'
           })

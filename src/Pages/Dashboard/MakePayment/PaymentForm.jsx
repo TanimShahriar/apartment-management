@@ -6,6 +6,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 
@@ -17,7 +18,13 @@ const PaymentForm = () => {
   const [error, setError] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [clientSecret, setClientSecret] = useState('');
+  const [successCoupon, setSuccessCoupon] = useState('')
+  const [couponError, setCouponError] = useState('')
+  const [discoutAmount, setdiscountAmount] = useState(0);
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
 
   const stripe = useStripe();
   const elements = useElements();
@@ -43,19 +50,62 @@ const PaymentForm = () => {
 
 
 
-  const totalPrice = member.reduce((total, item) => total + item.rent, 0)
-  console.log(totalPrice);
+
+
+  const { data: coupons = [] } = useQuery({
+    queryKey: ["coupons"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/coupons")
+      return res.data;
+    }
+  })
+
+  console.log(coupons);
+
+  const finalAmount = rent - discoutAmount;
+  console.log(finalAmount);
+
+
+  const handleCoupon = e => {
+    e.preventDefault();
+    const form = e.target;
+    const month = form.month.value;
+    const coupon = form.coupon.value;
+
+
+    const matchCoupon = coupons.find(item => item.couponCode == coupon);
+    console.log(matchCoupon);
+
+
+
+    if (matchCoupon) {
+      setCouponError('');
+      setSuccessCoupon(`coupon is accepted, you got ${matchCoupon.discountPercentage} % discount`)
+      const totalDiscount = (rent * matchCoupon.discountPercentage) / 100;
+      console.log(totalDiscount);
+      setdiscountAmount(totalDiscount);
+    }
+
+    else {
+      setCouponError("Coupon invaild")
+    }
+  }
+
+
+
+  // const totalPrice = member.reduce((total, item) => total + item.rent, 0)
+  // console.log(totalPrice);
 
   useEffect(() => {
-    if (totalPrice > 0 && totalPrice !== isNaN) {
-      axiosSecure.post('/create-payment-intent', { price: totalPrice })
+    if (finalAmount > 0 && finalAmount !== isNaN) {
+      axiosSecure.post('/create-payment-intent', { price: finalAmount })
         .then(res => {
           console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         })
     }
 
-  }, [axiosSecure, totalPrice])
+  }, [axiosSecure, finalAmount])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -109,7 +159,7 @@ const PaymentForm = () => {
         const payment = {
           reqEmail, apartmentNo, blockName, floorNo, rent,
           email: user.email,
-          price: totalPrice,
+          price: finalAmount,
           transactionId: paymentIntent.id,
           date: new Date(),
           agreementIds: member.map(item => item._id),
@@ -140,7 +190,9 @@ const PaymentForm = () => {
             console.log(res);
           })
 
+        location("/")
       }
+
     }
 
   }
@@ -215,17 +267,64 @@ const PaymentForm = () => {
 
 
 
-      <form onSubmit={handleSubmit} className=" border bg-blue-400 h-48 rounded-md mt-5 ml-5 p-2 w-1/3  hover:shadow-lg hover:transform hover:scale-100 duration-500 ease-in-out ">
-        <CardElement
+      <div className=" gap-10 p-5 ">
 
-        />
-        <button className=" w-full mt-10 px-3 py-1 bg-green-600 rounded-md font-semibold " type="submit" disabled={!stripe}>
-          Pay
-        </button>
-        <p className="text-red-700 ml-8 mt-3 font-semibold">{error}</p>
-        {transactionId && <p className="text-purple-700  font-semibold">your transaction id: {transactionId}</p>}
 
-      </form>
+        <form className="form-controll" onSubmit={handleCoupon}>
+          <div className="w-[300px]">
+            <label className="label">
+              <span className="label-text text-lg font-semibold">rent month</span>
+            </label>
+
+            <select className="w-[450px] h-12 rounded-lg" type="text" placeholder="Difficulty Level" name="month" required >
+              <option>january</option>
+              <option>february</option>
+              <option>march</option>
+              <option>april</option>
+              <option>may</option>
+              <option>june</option>
+              <option>july</option>
+              <option>august</option>
+              <option>september</option>
+              <option>october</option>
+              <option>november</option>
+              <option>december</option>
+            </select>
+          </div>
+
+          <div className="form-control mt-2 w-[450px]">
+            <label className="label">
+              <span className="label-text">coupon</span>
+            </label>
+            <label className="">
+
+              <input name="coupon" placeholder="coupon" className="input input-bordered w-72 lg:w-full" />
+            </label>
+          </div>
+          <input className="btn btn-primary mt-8 w-[450px]" type="submit" value="Get discount" />
+
+
+
+
+          <p className="text-red-700 ml-2 mt-3 font-semibold">{couponError}</p>
+          <p className="text-green-700 ml-2 mt-3 font-semibold">{successCoupon}</p>
+        </form>
+
+
+
+
+        <form onSubmit={handleSubmit} className=" w-[450px] border bg-blue-400 h-48 rounded-md mt-5  p-2  hover:shadow-lg hover:transform hover:scale-100 duration-500 ease-in-out ">
+          <CardElement
+
+          />
+          <button className=" w-full mt-10 px-3 py-1 bg-green-600 rounded-md font-semibold " type="submit" disabled={!stripe}>
+            Pay
+          </button>
+          <p className="text-red-700 ml-8 mt-3 font-semibold">{error}</p>
+          {transactionId && <p className="text-purple-700  font-semibold">your transaction id: {transactionId}</p>}
+
+        </form>
+      </div>
     </div>
 
   );

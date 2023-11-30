@@ -15,16 +15,16 @@ const Footer = () => {
           </div>
           <p>Registration Start Date</p>
           <p>Registration End Date</p>
-          <p>Exam Last Date </p>
+          <p>Book </p>
         </div>
         <div className="text-[#747474] text-[15px] font-[550] leading-7 tracking-wide md:">
           <div>
             <pre
               className="text-white pb-[34px] font-sans uppercase font-normal tracking-wider underline underline-offset-[12px] decoration-red-500/90"> dates &nbsp;</pre>
           </div>
-          <p>23 Dec 2021</p>
-          <p>30 May 2022</p>
-          <p>23 Dec 2021 to 31 May 2022</p>
+          <p>23 Dec 2022</p>
+          <p>30 May 2024</p>
+          <p>23 Dec 2023 to 31 May 2024</p>
         </div>
         <div className="md:flex flex-col justify-between">
           <div className="text-[#747474] text-[15px] font-[550] leading-7 tracking-wide">
@@ -57,8 +57,8 @@ const Footer = () => {
           <p className="space-x-3"> <i className="fa fa-home text-[17px]"></i><strong
             className="text-[#8b8b8b] text-[15px] tracking-wide">Our Company</strong> </p>
           <div className="leading-7">
-            <p className=""> NH-70 Chandigarh-Ludhiana Highway, <br /> Mohali, Punjab (INDIA) <br /> General Helpline
-              No:+91 987-6543-210 </p>
+            <p className=""> NH-70 Chandigarh-Ludhiana Highway, <br /> Florida, (US) <br /> General Helpline
+              No:+1 987-6543-210 </p>
           </div>
           <div className="leading-7 mt-4 text-[15px] font-[500]">
             <p className="space-x-3 hover:text-[#cacaca]"> <i className="fa fa-phone text-[17px]"></i> <a href="#"> 1800

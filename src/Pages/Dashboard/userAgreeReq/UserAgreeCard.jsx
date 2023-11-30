@@ -107,6 +107,7 @@ const UserAgreeCard = ({ data, refetch }) => {
       <div className="rounded-lg bg-slate-100 p-2  shadow-lg drop-shadow-md shadow-current  h-auto  hover:shadow-lg hover:transform hover:scale-100 duration-500 ease-in-out ">
         <img className="w-full h-44 lg:h-[220px] rounded-t-lg " src={apartmentImage} alt="Assignment" />
         <p className=" mx-3 mt-2 font-medium text-lg">Apartment no: {apartmentNo}</p>
+        <p className=" mx-3 mt-2 font-medium text-lg">Client: {reqName}</p>
         <p className=" mx-3 my-1 font-medium text-lg">Level: {blockName}</p>
         <div className='flex justify-between px-2'>
           <button onClick={() => handleAccept(_id)} className='font-medium px-3 py-1 bg-green-500 rounded-md'>Accept</button>

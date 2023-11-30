@@ -26,6 +26,11 @@ import ManageCoupons from "../Pages/Dashboard/ManageCoupons/ManageCoupons";
 import UserProfile from "../Pages/Dashboard/UserProfile/UserProfile";
 import ConfirmPayment from "../Pages/Dashboard/MakePayment/confirmPayment";
 import CreateCoupons from "../Pages/Dashboard/Coupons/CreateCoupons";
+import MoreAbout from "../Pages/Home/About/MoreAbout";
+import AllCoupons from "../Pages/Dashboard/Coupons/AllCoupons";
+import Gallery from "../Pages/Gallery/Gallery";
+import Location from "../Pages/Location/Location";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -55,6 +60,18 @@ export const router = createBrowserRouter([
         element: <Apartment></Apartment>
       },
       {
+        path: "/moreAbout",
+        element: <MoreAbout></MoreAbout>
+      },
+      {
+        path: "/gallery",
+        element: <Gallery></Gallery>
+      },
+      {
+        path: "/location",
+        element: <Location></Location>
+      },
+      {
         path: "/agree",
         element: <Agree></Agree>,
         loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params._id}`)
@@ -68,30 +85,30 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "myProfile",
-        element: <MyProfile></MyProfile>
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
       {
         path: "announcement",
-        element: <Announcement></Announcement>
+        element: <PrivateRoute><Announcement></Announcement></PrivateRoute>
       },
       {
         path: "userProfile",
-        element: <UserProfile></UserProfile>
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       },
 
 
       //member panel
       {
         path: "makePayment",
-        element: <MakePayment></MakePayment>
+        element: <PrivateRoute><MakePayment></MakePayment></PrivateRoute>
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>
+        element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
       },
       {
         path: "confirmPayment",
-        element: <ConfirmPayment></ConfirmPayment>
+        element: <PrivateRoute><ConfirmPayment></ConfirmPayment></PrivateRoute>
       },
 
 
@@ -132,6 +149,10 @@ export const router = createBrowserRouter([
       {
         path: "createCoupons",
         element: <CreateCoupons></CreateCoupons>
+      },
+      {
+        path: "allCoupons",
+        element: <AllCoupons></AllCoupons>
       },
     ]
   }
