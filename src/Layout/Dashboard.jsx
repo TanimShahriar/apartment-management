@@ -125,13 +125,9 @@ const Dashboard = () => {
               <MdHome className="text-xl"></MdHome>
               Home</NavLink>
           </li>
+
           <li className="">
-            <NavLink to="/ourShop/salads">
-              <MdMenu></MdMenu>
-              Menu</NavLink>
-          </li>
-          <li className="">
-            <NavLink to="/contact">
+            <NavLink to="/dashboard/contact">
               <MdEmail></MdEmail>
               Contact</NavLink>
           </li>

@@ -6,7 +6,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -21,9 +21,10 @@ const PaymentForm = () => {
   const [successCoupon, setSuccessCoupon] = useState('')
   const [couponError, setCouponError] = useState('')
   const [discoutAmount, setdiscountAmount] = useState(0);
+  const [paymentMonth, setPaymentMonth] = useState("");
   const { user } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
+
 
 
   const stripe = useStripe();
@@ -71,6 +72,7 @@ const PaymentForm = () => {
     const form = e.target;
     const month = form.month.value;
     const coupon = form.coupon.value;
+    setPaymentMonth(month);
 
 
     const matchCoupon = coupons.find(item => item.couponCode == coupon);
@@ -157,7 +159,7 @@ const PaymentForm = () => {
 
         //saving payment details in db
         const payment = {
-          reqEmail, apartmentNo, blockName, floorNo, rent,
+          reqEmail, apartmentNo, blockName, floorNo, rent, paymentMonth,
           email: user.email,
           price: finalAmount,
           transactionId: paymentIntent.id,
@@ -190,14 +192,14 @@ const PaymentForm = () => {
             console.log(res);
           })
 
-        location("/")
       }
-
+      navigate("/dashboard/paymentHistory")
     }
 
   }
   return (
     <div>
+
       <form className="p-5">
 
         <div className="md:flex gap-5 mb-5 ">
@@ -276,7 +278,7 @@ const PaymentForm = () => {
               <span className="label-text text-lg font-semibold">rent month</span>
             </label>
 
-            <select className="w-[450px] h-12 rounded-lg" type="text" placeholder="Difficulty Level" name="month" required >
+            <select className="w-[450px] h-12 rounded-lg" type="text" required placeholder="Difficulty Level" name="month"  >
               <option>january</option>
               <option>february</option>
               <option>march</option>

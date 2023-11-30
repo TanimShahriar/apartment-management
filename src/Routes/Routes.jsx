@@ -31,6 +31,7 @@ import AllCoupons from "../Pages/Dashboard/Coupons/AllCoupons";
 import Gallery from "../Pages/Gallery/Gallery";
 import Location from "../Pages/Location/Location";
 import AdminRoute from "./AdminRoute";
+import Contact from "../Pages/Dashboard/Contact/Contact";
 
 
 
@@ -94,6 +95,10 @@ export const router = createBrowserRouter([
       {
         path: "userProfile",
         element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
+      },
+      {
+        path: "contact",
+        element: <Contact></Contact>
       },
 
 
