@@ -1,6 +1,8 @@
-## Project: https://the-hill-apartment.web.app/
+## Project: Apartment management
 
-### project features:
+### Live link:  https://the-hill-apartment.web.app/
+
+#### project features:
 + Admin dashboard, member dashboard, user dashboard.
 + Search functionality.
 + Token based login and security, local storage
